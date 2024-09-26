@@ -4,17 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kalkulator RPC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; }
-    .container { max-width: 400px; margin: 50px auto; text-align: center; }
-    input, button { margin: 5px; padding: 10px; }
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #5f27cd; /* Elegant color */
+      margin-bottom: 20px;
+    }
+    input, select {
+      width: calc(100% - 22px);
+      margin: 10px 0;
+      padding: 10px;
+      border: 2px solid #5f27cd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #5f27cd;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #4a1da3; /* Darker shade for hover effect */
+    }
+    p {
+      margin-top: 20px;
+      font-weight: 500;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Kalkulator RPC</h1>
-    <input type="number" id="a" placeholder="Angka pertama">
-    <input type="number" id="b" placeholder="Angka kedua">
+    <input type="number" id="a" placeholder="Angka pertama" required>
+    <input type="number" id="b" placeholder="Angka kedua" required>
     <select id="operation">
       <option value="add">Tambah</option>
       <option value="subtract">Kurang</option>
