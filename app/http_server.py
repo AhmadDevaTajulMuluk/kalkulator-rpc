@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 # Koneksi ke server RPC (ganti URL jika RPC server di-deploy terpisah)
-proxy = xmlrpc.client.ServerProxy("http://localhost:8000/")
+proxy = xmlrpc.client.ServerProxy("https://rpc-server-alpha.vercel.app/")
 
 @app.route('/')
 def index():
