@@ -13,13 +13,12 @@ server.addMethod("divide", ({ a, b }) => {
   return a / b;
 });
 
-// Middleware to parse JSON requests
-app.use(express.json());
+// Serve static files from the public directory
 app.use(express.static("public"));
 
-// Root route for basic response
+// Serve the index.html when accessing the root path
 app.get("/", (req, res) => {
-  res.send("Welcome to the Kalkulator RPC API!");
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 // Route for handling JSON-RPC requests
