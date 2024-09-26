@@ -29,8 +29,14 @@ app.post("/rpc", (req, res) => {
     } else {
       res.sendStatus(204);
     }
+  }).catch((error) => {
+    // Log the error to the console for debugging
+    console.error(error);
+    // Respond with a JSON error message
+    res.status(500).json({ error: "Internal Server Error", message: error.message });
   });
 });
+
 
 // Set the port and start the server
 const PORT = process.env.PORT || 3000;
