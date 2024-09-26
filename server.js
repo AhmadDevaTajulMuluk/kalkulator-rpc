@@ -13,6 +13,9 @@ server.addMethod("divide", ({ a, b }) => {
   return a / b;
 });
 
+// Middleware for parsing JSON
+app.use(express.json());
+
 // Serve static files from the public directory
 app.use(express.static("public"));
 
@@ -36,7 +39,6 @@ app.post("/rpc", (req, res) => {
     res.status(500).json({ error: "Internal Server Error", message: error.message });
   });
 });
-
 
 // Set the port and start the server
 const PORT = process.env.PORT || 3000;
