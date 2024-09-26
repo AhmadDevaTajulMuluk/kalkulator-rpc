@@ -1,1 +1,0 @@
-web: python app/http_server.py
