@@ -4,23 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kalkulator RPC</title>
-  <link rel="stylesheet" href="./styles.css">
+  <style>
+    body { font-family: Arial, sans-serif; }
+    .container { max-width: 400px; margin: 50px auto; text-align: center; }
+    input, button { margin: 5px; padding: 10px; }
+  </style>
 </head>
 <body>
-  <div class="calculator">
-        <h1>Kalkulator RPC</h1>
-        <input type="number" id="num1" placeholder="Angka 1">
-        <input type="number" id="num2" placeholder="Angka 2">
-        
-        <div class="buttons">
-            <button onclick="calculate('add')">+</button>
-            <button onclick="calculate('subtract')">-</button>
-            <button onclick="calculate('multiply')">*</button>
-            <button onclick="calculate('divide')">/</button>
-        </div>
-        
-        <h2>Hasil: <span id="result"></span></h2>
-    </div>
+  <div class="container">
+    <h1>Kalkulator RPC</h1>
+    <input type="number" id="a" placeholder="Angka pertama">
+    <input type="number" id="b" placeholder="Angka kedua">
+    <select id="operation">
+      <option value="add">Tambah</option>
+      <option value="subtract">Kurang</option>
+      <option value="multiply">Kali</option>
+      <option value="divide">Bagi</option>
+    </select>
+    <button onclick="calculate()">Hitung</button>
+    <p id="result"></p>
+  </div>
   <script>
     async function calculate() {
       const a = parseFloat(document.getElementById('a').value);
