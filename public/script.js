@@ -9,6 +9,8 @@ function calculate(method) {
         id: 1,
     };
 
+    console.log("Request being sent:", request);  // Log request sebelum dikirim
+
     fetch('/api/calc', {
         method: 'POST',
         headers: {
@@ -16,11 +18,20 @@ function calculate(method) {
         },
         body: JSON.stringify(request),
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log("Raw Response:", response);
+        if (!response.ok) {
+            console.error("Network response was not ok:", response.statusText);
+            throw new Error("Network response was not ok");
+        }
+        return response.json();  // Parsing sebagai JSON
+    })
     .then(data => {
+        console.log("Response Data:", data);
         document.getElementById("result").innerText = data.result;
     })
     .catch(error => {
-        console.error("Error:", error);
+        console.error("Error caught:", error);
+        document.getElementById("result").innerText = "Terjadi kesalahan: " + error.message;
     });
 }

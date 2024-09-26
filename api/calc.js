@@ -17,16 +17,36 @@ const rpcServer = new Server({
 
 // Fungsi untuk menangani request
 module.exports = async (req, res) => {
-  if (req.method === "POST") {
-    const requestData = req.body;
     try {
-      const response = await rpcServer.receive(JSON.stringify(requestData));
-      res.status(200).json(response);
+      console.log(`Received ${req.method} request`);
+  
+      if (req.method === "POST") {
+        let body = '';
+  
+        req.on('data', chunk => {
+          body += chunk.toString();
+        });
+  
+        req.on('end', async () => {
+          try {
+            console.log("Request Body:", body);
+            const response = await rpcServer.receive(body);
+            console.log("RPC Response:", response);
+            res.status(200).json(response);  // Jika berhasil, kirim respons JSON
+          } catch (error) {
+            console.error("Error during RPC processing:", error.message);
+            res.status(500).json({ error: "Server error during RPC processing." });
+          }
+        });
+      } else {
+        res.setHeader("Allow", ["POST"]);
+        res.status(405).json({ error: `Method ${req.method} Not Allowed` });
+      }
     } catch (error) {
-      res.status(400).json({ error: error.message });
+      console.error("Server Error:", error.message);
+      res.status(500).json({ error: "Internal Server Error." });
     }
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
-  }
-};
+  };
+  
+
+
