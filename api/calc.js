@@ -1,5 +1,6 @@
 const { Server } = require("json-rpc-2.0");
 const net = require("net");
+const cors = require('cors');
 
 // Inisialisasi server RPC
 const rpcServer = new Server({
