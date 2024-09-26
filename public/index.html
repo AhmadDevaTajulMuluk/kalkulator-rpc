@@ -43,11 +43,15 @@
         </div>
     <p id="result"></p>
   </div>
-  <script>
-    async function calculate() {
+   <script>
+    async function calculate(operation) {
       const a = parseFloat(document.getElementById('a').value);
       const b = parseFloat(document.getElementById('b').value);
-      const operation = document.getElementById('operation').value;
+
+      if (isNaN(a) || isNaN(b)) {
+        document.getElementById('result').innerText = 'Masukkan angka yang valid!';
+        return;
+      }
 
       const response = await fetch('/rpc', {
         method: 'POST',
